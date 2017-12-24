@@ -43,3 +43,41 @@ def display_snowman
   # returning nil prevents the <File> from being returned, which is what File.open will do by default
   return nil
 end
+
+def play_game
+  puts "Welcome to Snowman!!!!"
+  display_snowman
+
+  puts "Would you like to play with a random word or with a word of your choosing? Input 'random' for a random word, or enter the word you would like to play with."
+  user_word_choice = gets.chomp
+  if user_word_choice.downcase == 'random'
+    word = WORDS.sample
+  else
+    word = user_word_choice
+  end
+
+  puts "Here is your word. Save Frosty!!!"
+  puts display_word(word)
+
+  while !has_won?(word) && !has_lost?
+    puts "************************************************************************************"
+    puts display_snowman
+    puts "The following letters have yet to be guessed:"
+    puts AVAILABLE_LETTERS.join(" - ")
+    puts display_word(word)
+    puts "Guess a letter:"
+    letter = gets.chomp
+    check_guess(word, letter)
+  end
+
+  puts "************************************************************************************"
+
+  if has_won?(word)
+    puts "You saved Frosty! Happy Birthday!"
+  else
+    puts "You killed Frosty! WTF, dude?"
+    puts "The word was '#{word}'."
+  end
+end
+
+play_game
