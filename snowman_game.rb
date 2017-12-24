@@ -73,7 +73,7 @@ def play_game
   puts "************************************************************************************"
 
   if has_won?(word)
-    puts "You saved Frosty! Happy Birthday!"
+    puts "You saved Frosty!"
   else
     puts "You killed Frosty!"
     puts "The word was '#{word}'."
